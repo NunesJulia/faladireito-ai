@@ -112,7 +112,7 @@ export default function App() {
                 <li>
                   <button
                     onClick={() => navigateTo('/prompt')}
-                    className={`text-gray-600 hover:text-indigo-600 transition duration-150 flex items-center ${currentPath === '/prompt' ? 'text-indigo-600 font-semibold' : ''}`}
+                    className={`text-gray-600 hover:scale-105 cursor-pointer hover:text-indigo-600 transition duration-150 flex items-center ${currentPath === '/prompt' ? 'text-indigo-600 font-semibold' : ''}`}
                   >
                     <Search className="w-5 h-5 mr-1" /> Prompt
                   </button>

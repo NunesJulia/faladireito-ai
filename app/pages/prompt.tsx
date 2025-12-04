@@ -44,7 +44,7 @@ const PromptPage: React.FC<PromptPageProps> = ({ user, logout, validateAuth }) =
           </p>
           <button
             onClick={logout}
-            className="flex items-center text-sm text-red-600 hover:text-red-800 transition duration-150"
+            className="flex cursor-pointer items-center text-sm text-red-600 hover:text-red-800 transition duration-150"
           >
             <LogOut className="w-4 h-4 mr-1" />
             Sair
@@ -62,7 +62,8 @@ const PromptPage: React.FC<PromptPageProps> = ({ user, logout, validateAuth }) =
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setPromptText(e.target.value)}
           placeholder="Digite seu prompt aqui..."
           rows={5}
-          className="w-full p-4 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm"
+          className="w-full p-4 border border-gray-300 rounded-lg focus:ring-indigo-500
+           focus:border-indigo-500 transition duration-150 shadow-sm text-blue-900"
           disabled={isSending}
         />
         
@@ -76,7 +77,7 @@ const PromptPage: React.FC<PromptPageProps> = ({ user, logout, validateAuth }) =
         <div className="flex justify-end space-x-4">
           <button
             onClick={() => setPromptText('')}
-            className="flex items-center bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-full transition duration-300"
+            className="flex cursor-pointer items-center bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-full transition duration-300"
             disabled={isSending}
           >
             <X className="w-5 h-5 mr-2" />
@@ -85,7 +86,7 @@ const PromptPage: React.FC<PromptPageProps> = ({ user, logout, validateAuth }) =
           <button
             onClick={handleSendPrompt}
             disabled={isSending || promptText.trim() === ''}
-            className={`flex items-center font-semibold py-2 px-6 rounded-full transition duration-300 
+            className={`flex cursor-pointer items-center font-semibold py-2 px-6 rounded-full transition duration-300 
               ${isSending ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg'}`}
           >
             {isSending && <Loader2 className="w-5 h-5 mr-2 animate-spin" />}
