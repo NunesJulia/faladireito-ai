@@ -10,7 +10,7 @@ import useAuth from "./hooks/useAuth";
 import NotFoundPage from "./pages/not_found";
 // --- Componente Principal (Router) ---
 export default function App() {
-  const [currentPath, setCurrentPath] = useState<string>(window.location.pathname);
+  const [currentPath, setCurrentPath] = useState<string>("/");
   const { user, isLoading, login, logout, validateAuth } = useAuth();
   const isAuthenticated: boolean = !!user;
 
