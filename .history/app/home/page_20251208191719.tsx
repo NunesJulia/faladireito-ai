@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Image from 'next/image';
+import Image from 'next/image'; // 1. Importar componente Image do Next.js
 
 
 const CentralPromptBar = ({ handleNavigate }: { handleNavigate: () => void }) => {

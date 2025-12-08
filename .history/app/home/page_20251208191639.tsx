@@ -9,39 +9,47 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Image from 'next/image';
+import Image from 'next/image'; // 1. Importar componente Image do Next.js
 
-
+// Componente para a Barra de Prompt, agora centralizada e larga
 const CentralPromptBar = ({ handleNavigate }: { handleNavigate: () => void }) => {
   return (
+    // z-20 para garantir que fique acima das sombras e da imagem (z-10 ou z-0)
     <div className="z-20 w-[90%] md:w-[80%] lg:w-[40%] max-w-4xl bg-black rounded-xl p-6 shadow-2xl border border-white">
       <h2 className="text-2xl md:text-3xl text-white font-semibold text-center mb-6">
         Quando falar direito faz toda a diferença
       </h2>
 
+      {/* Botões de Ação */}
       <div className="flex items-center justify-between space-x-3">
         
+        {/* Grupo de Botões à Esquerda */}
         <div className="flex space-x-2">
           
+          {/* Botão Plus com Stroke Branco */}
           <button className="p-3 bg-black hover:bg-gray-800 text-white rounded-full transition duration-150 border border-white">
             <Plus className="w-5 h-5" />
           </button>
           
+          {/* Botão Buscar com Stroke Branco */}
           <button className="p-3 bg-black hover:bg-gray-800 text-white rounded-full transition duration-150 flex items-center space-x-1 border border-white">
             <Globe className="w-5 h-5" />
             <span className="text-sm hidden sm:inline">Buscar</span>
           </button>
           
+          {/* Botão Investigar com Stroke Branco */}
           <button className="p-3 bg-black hover:bg-gray-800 text-white rounded-full transition duration-150 flex items-center space-x-1 border border-white">
             <Telescope className="w-5 h-5" />
             <span className="text-sm hidden sm:inline">Investigar</span>
           </button>
-
+          
+          {/* Botão MoreHorizontal com Stroke Branco */}
           <button className="p-3 bg-black hover:bg-gray-800 text-white rounded-full transition duration-150 border border-white">
             <MoreHorizontal className="w-5 h-5" />
           </button>
         </div>
 
+        {/* Botão de Envio (Seta para Cima) */}
         <button
           onClick={handleNavigate}
           className="p-3 bg-white hover:bg-gray-200 text-black rounded-full transition duration-150"
