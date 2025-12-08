@@ -1,4 +1,4 @@
-
+// app/login/login_component.tsx
 "use client";
 
 import { Loader2, ArrowLeft } from "lucide-react"; // Adicionado ArrowLeft
@@ -35,23 +35,23 @@ export default function LoginPage() {
     // Fundo da tela preto
     <div className="flex bg-black flex-col items-center justify-center min-h-[50vh] h-screen p-6">
       {/* Caixa de Login com fundo escuro e borda branca */}
-      <div className="relative w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl border border-white">
+      <div className="relative w-full max-w-sm bg-gray-900 p-8 rounded-xl shadow-2xl border border-white">
         
         {/* Botão de Voltar para Home */}
         <button
           onClick={handleGoBack}
-          className="absolute top-4 left-4 text-black hover:text-gray-400 transition duration-150"
+          className="absolute top-4 left-4 text-white hover:text-gray-400 transition duration-150"
           aria-label="Voltar para a página inicial"
         >
           <ArrowLeft className="w-6 h-6" />
         </button>
 
-        <h2 className="text-3xl font-bold text-center text-black mt-4 mb-8">
+        <h2 className="text-3xl font-bold text-center text-white mt-4 mb-8">
           Acesso Exclusivo
         </h2>
 
         {error && (
-          <p className="text-sm text-red-400 bg-black p-3 rounded-lg mb-4 text-center border border-black">
+          <p className="text-sm text-red-400 bg-red-900/50 p-3 rounded-lg mb-4 text-center border border-red-700">
             {error}
           </p>
         )}
@@ -62,7 +62,7 @@ export default function LoginPage() {
           className={`w-full cursor-pointer py-3 px-4 rounded-lg font-semibold transition duration-300 flex items-center justify-center 
             ${isLoading 
                 ? "bg-gray-600 text-gray-400 cursor-not-allowed" 
-                : "bg-black hover:bg-gray-600 text-white shadow-lg"
+                : "bg-red-600 hover:bg-red-700 text-white shadow-lg"
             }`}
         >
           {isLoading ? (
@@ -75,11 +75,10 @@ export default function LoginPage() {
           )}
         </button>
 
-        <p className="mt-6 text-xs text-gray-700 text-sm text-center">
+        <p className="mt-6 text-xs text-gray-400 text-center">
           Usamos autenticação do Google para garantir a segurança dos seus dados.
         </p>
       </div>
-      
     </div>
   );
 }

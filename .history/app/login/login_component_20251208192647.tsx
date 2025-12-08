@@ -1,4 +1,4 @@
-
+// app/login/login_component.tsx
 "use client";
 
 import { Loader2, ArrowLeft } from "lucide-react"; // Adicionado ArrowLeft
@@ -40,7 +40,7 @@ export default function LoginPage() {
         {/* Botão de Voltar para Home */}
         <button
           onClick={handleGoBack}
-          className="absolute top-4 left-4 text-black hover:text-gray-400 transition duration-150"
+          className="absolute top-4 left-4 text-bla hover:text-gray-400 transition duration-150"
           aria-label="Voltar para a página inicial"
         >
           <ArrowLeft className="w-6 h-6" />
@@ -62,7 +62,7 @@ export default function LoginPage() {
           className={`w-full cursor-pointer py-3 px-4 rounded-lg font-semibold transition duration-300 flex items-center justify-center 
             ${isLoading 
                 ? "bg-gray-600 text-gray-400 cursor-not-allowed" 
-                : "bg-black hover:bg-gray-600 text-white shadow-lg"
+                : "bg-red-600 hover:bg-red-700 text-white shadow-lg"
             }`}
         >
           {isLoading ? (
@@ -75,11 +75,10 @@ export default function LoginPage() {
           )}
         </button>
 
-        <p className="mt-6 text-xs text-gray-700 text-sm text-center">
+        <p className="mt-6 text-xs text-gray-400 text-sm text-center">
           Usamos autenticação do Google para garantir a segurança dos seus dados.
         </p>
       </div>
-      
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function LoginPage() {
   };
 
   return (
-    // Fundo da tela preto
+
     <div className="flex bg-black flex-col items-center justify-center min-h-[50vh] h-screen p-6">
       {/* Caixa de Login com fundo escuro e borda branca */}
       <div className="relative w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl border border-white">

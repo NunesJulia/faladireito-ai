@@ -1,4 +1,4 @@
-
+// app/login/login_component.tsx
 "use client";
 
 import { Loader2, ArrowLeft } from "lucide-react"; // Adicionado ArrowLeft
@@ -62,7 +62,7 @@ export default function LoginPage() {
           className={`w-full cursor-pointer py-3 px-4 rounded-lg font-semibold transition duration-300 flex items-center justify-center 
             ${isLoading 
                 ? "bg-gray-600 text-gray-400 cursor-not-allowed" 
-                : "bg-black hover:bg-gray-600 text-white shadow-lg"
+                : "bg-black hover:bg-red-700 text-white shadow-lg"
             }`}
         >
           {isLoading ? (
@@ -79,7 +79,6 @@ export default function LoginPage() {
           Usamos autenticação do Google para garantir a segurança dos seus dados.
         </p>
       </div>
-      
     </div>
   );
 }
