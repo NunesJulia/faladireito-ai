@@ -107,6 +107,12 @@ Apesar do grande potencial da solução, o projeto precisa lidar com desafios im
   - Arquitetura projetada para balancear segurança e usabilidade.
   - Abordagem de IA como ferramenta de apoio, não como agente autônomo de decisão legal, garantindo que a responsabilidade final permaneça com o usuário.
 
+## Tecnologias Utilizadas
+
+- **Front-end**: React, Next.js e Tailwind CSS
+- **Infraestrutura e Back-end**: Vercel, MongoDB e N8N
+- **Autenticação e Segurança**: Google Auth e JWT (JSON Web Token)
+
 ## Como Buildar
 Para configurar e rodar o projeto localmente, siga os pré-requisitos e os passos de instalação detalhados no arquivo de build na pasta documentação. O processo envolve a clonagem do repositório, a instalação das dependências do backend e do frontend, e a inicialização dos dois servidores em terminais separados.
 
