@@ -29,7 +29,7 @@
  
 
 ## Guidelines:
-- Keep it simple, stupid!
+- Keep it simple.
 - Don't repeat yourself!
 - Ajuste a documentação sempre que a estrutura do projeto for impactada por sua colaboração.
 
