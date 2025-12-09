@@ -1,6 +1,6 @@
 # Fala Direito
 O Fala Direito é uma plataforma digital web, apoiada por Inteligência Artificial (IA) cujo objetivo é democratizar o acesso à informação jurídica. O sistema foi pensado para atuar em duas frentes principais:
-1. **Inclusão social** – tornando a linguagem jurídica mais clara e acessível para pessoas leigas, que muitas vezes não compreendem seus direitos ou não conseguem interpretar documentos legais básicos.
+1. **Inclusão social** – tornando a linguagem jurídica mais clara e acessível para pessoas leigas, que muitas vezes não compreendem seus direitos ou não conseguem interpretar textos legais básicos submetidos na caixa de texto.
 2. **Eficiência profissional** – apoiando juristas, advogados e estudantes de direito com ferramentas inteligentes de interpretação, síntese e organização de informações jurídicas, otimizando tarefas repetitivas e melhorando a produtividade.
 
 O Fala Direito reconhece que o Direito, enquanto instrumento essencial de cidadania, deve ser compreensível e acessível. Ao integrar Large Language Models (LLMs) e técnicas de Processamento de Linguagem Natural (PLN), a solução propõe uma comunicação mais simples, direta e eficaz entre as normas jurídicas e seus destinatários.
@@ -8,11 +8,11 @@ O Fala Direito reconhece que o Direito, enquanto instrumento essencial de cidada
 ## O Problema
 Apesar de o Brasil ser um dos países com maior produção legislativa do mundo — com milhares de leis em vigor e novas normas sendo criadas diariamente — o acesso real ao Direito ainda é restrito. A população enfrenta barreiras que dificultam a compreensão e a aplicação de seus direitos:
 
-  - **Complexidade da linguagem jurídica**: Pesquisas mostram que mais de 70% da população brasileira tem dificuldade em compreender textos jurídicos. Termos técnicos, frases extensas e linguagem rebuscada tornam contratos, decisões judiciais e leis quase inacessíveis para cidadãos comuns.
+  - **Complexidade da linguagem jurídica**: Pesquisas mostram que mais de 70% da população brasileira tem dificuldade em compreender textos jurídicos. Termos técnicos, frases extensas e linguagem rebuscada tornam o Direito quase inacessível para cidadãos comuns, que buscam respostas para suas dúvidas inseridas no sistema.
   
   - **Dependência de profissionais**: Questões simples, como interpretar um contrato de aluguel ou entender um processo administrativo, acabam exigindo a contratação de advogados. Isso aumenta custos, limita a autonomia das pessoas e pode excluir aqueles com menos recursos financeiros.
   
-  - **Excesso de informação para profissionais**: Advogados, promotores e juízes lidam com grandes volumes de dados jurídicos diariamente. Pesquisas, síntese de jurisprudência e organização de relatórios consomem horas de trabalho, reduzindo o tempo disponível para análises estratégicas e atendimento aos clientes.
+  - **Excesso de informação para profissionais**: Advogados, promotores e juízes lidam com grandes volumes de dados jurídicos diariamente. A síntese de informações jurídicas complexas digitadas na caixa de texto e a organização de relatórios consomem horas de trabalho, reduzindo o tempo disponível para análises estratégicas e atendimento aos clientes.
   
   - **Falta de centralização**: Documentos e informações jurídicas estão dispersos em diferentes fontes (sites de tribunais, diários oficiais, doutrinas, regulamentos administrativos), dificultando uma visão integrada e clara.
 
@@ -24,13 +24,13 @@ _Como tornar o conhecimento jurídico mais acessível, eficiente e democrático 
 
 Para isso, a solução propõe:
 
-  - **Simplificação de linguagem jurídica**: tradução automática de termos complexos em linguagem acessível, permitindo que qualquer pessoa compreenda contratos, leis e documentos oficiais.
+  - **Simplificação de linguagem jurídica**: tradução automática de termos complexos em linguagem acessível, após o usuário digitar o trecho ou a dúvida, permitindo que qualquer pessoa compreenda leis e demais textos contidos em documentos oficiais.
 
   - **Síntese inteligente de documentos**: criação de resumos claros de contratos extensos, decisões judiciais e regulamentos, poupando tempo de leitura e aumentando a eficiência.
 
-  - **Assistente jurídico inteligente**: suporte para elaboração de relatórios, petições e pareceres, sugerindo estruturas textuais e referências normativas.
+  - **Assistente jurídico inteligente**: suporte para elaboração de relatórios, petições e pareceres, sugerindo estruturas textuais e referências normativas, a partir do input do profissional.
 
-  - **Organização e centralização**: integração de diferentes fontes jurídicas em um repositório unificado, com filtros inteligentes para pesquisa.
+  - **Organização e centralização**: integração de diferentes fontes jurídicas em um repositório unificado, com filtros inteligentes para pesquisa e resposta imediata a consultas por texto.
 
   - **Inclusão social e cidadania**: empoderar cidadãos comuns para que compreendam melhor seus direitos e obrigações, reduzindo a exclusão causada pela linguagem técnica do Direito.
 
