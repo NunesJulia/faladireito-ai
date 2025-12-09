@@ -24,17 +24,58 @@ _Como tornar o conhecimento jurídico mais acessível, eficiente e democrático 
 
 Para isso, a solução propõe:
 
-  - **Simplificação de linguagem jurídica**: tradução automática de termos complexos em linguagem acessível, após o usuário digitar o trecho ou a dúvida, permitindo que qualquer pessoa compreenda leis e demais textos contidos em documentos oficiais.
+  - **Simplificação de linguagem jurídica**: Tradução automática de termos complexos em linguagem acessível, após o usuário digitar o trecho ou a dúvida, permitindo que qualquer pessoa compreenda leis e demais textos contidos em documentos oficiais.
 
-  - **Síntese inteligente de documentos**: criação de resumos claros de contratos extensos, decisões judiciais e regulamentos, poupando tempo de leitura e aumentando a eficiência.
+  - **Síntese inteligente de documentos**: Criação de resumos claros de contratos extensos, decisões judiciais e regulamentos, poupando tempo de leitura e aumentando a eficiência.
 
-  - **Assistente jurídico inteligente**: suporte para elaboração de relatórios, petições e pareceres, sugerindo estruturas textuais e referências normativas, a partir do input do profissional.
+  - **Assistente jurídico inteligente**: Suporte para elaboração de relatórios, petições e pareceres, sugerindo estruturas textuais e referências normativas, a partir do input do profissional.
 
-  - **Organização e centralização**: integração de diferentes fontes jurídicas em um repositório unificado, com filtros inteligentes para pesquisa e resposta imediata a consultas por texto.
+  - **Organização e centralização**: Integração de diferentes fontes jurídicas em um repositório unificado, com filtros inteligentes para pesquisa e resposta imediata a consultas por texto.
 
-  - **Inclusão social e cidadania**: empoderar cidadãos comuns para que compreendam melhor seus direitos e obrigações, reduzindo a exclusão causada pela linguagem técnica do Direito.
+  - **Inclusão social e cidadania**: Empoderar cidadãos comuns para que compreendam melhor seus direitos e obrigações, reduzindo a exclusão causada pela linguagem técnica do Direito.
 
 Sendo assim, o Fala Direito atua como uma ponte entre o juridiquês e o cidadão comum, sem deixar de lado as necessidades avançadas dos profissionais da área.
+
+## Funcionalidades
+O Fala Direito opera através de uma interface de chat minimalista e focada em texto, eliminando barreiras de entrada. As funcionalidades são divididas por perfil de usuário, mas sustentadas pelo mesmo núcleo de IA Generativa.
+
+  - **Núcleo do Sistema (Core)**:
+    
+    - **Interface Conversacional (Chat UI)**: Entrada de dados exclusivamente via texto (digitação ou copy & paste), sem necessidade de upload de arquivos complexos.
+    - **Processamento de Linguagem Natural (PLN)**: Interpretação semântica de dúvidas, gírias ou textos jurídicos formais.
+    - **Geração de Cenários Práticos (Storytelling)**: Feature assinatura do projeto. Após cada explicação teórica, o sistema gera automaticamente uma história fictícia e didática para ilustrar a aplicação da lei no mundo real.
+    - **Anonimização em Tempo Real**: Filtros de segurança que identificam e mascaram dados sensíveis (PII - Personally Identifiable Information) antes do processamento pela LLM.
+
+  - **Módulo Cidadão (Foco: Inclusão Social)**:
+    - **Tradutor de "Juridiquês"**: Converte trechos complexos de documentos (colados pelo usuário) em linguagem coloquial e direta.
+    - **Consultor de Direitos Básicos**: Responde dúvidas sobre cotidiano (Consumidor, Vizinhança, Família) com base na legislação vigente, sem citar artigos de forma crua.
+    - **Orientação Passo a Passo**: Sugere as próximas ações práticas que o cidadão deve tomar (ex: "Vá ao PROCON", "Reúna estas provas").
+
+- **Módulo Jurista (Foco: Eficiência Profissional)**:
+  - **Sintetizador de Jurisprudência**: O usuário cola textos longos de decisões judiciais e o sistema retorna um resumo estruturado (Fatos, Fundamentação, Decisão).
+  - **Estruturação de Peças (Co-Pilot)**: A partir da descrição dos fatos, o sistema sugere o esqueleto lógico de petições e teses jurídicas aplicáveis.
+  - **Revisão e Refinamento**: Análise de textos redigidos pelo profissional com sugestões para melhorar a clareza ou a formalidade jurídica.
+ 
+## Fluxo de Utilização
+
+```
+graph TD
+    A[Usuário] -->|Digita dúvida ou Cola texto| B(Interface de Chat)
+    B --> C{Camada de Segurança}
+    C -->|Detecta PII/Dados Sensíveis| D[Anonimização de Dados]
+    D --> E[Classificação de Intenção]
+    E -->|Perfil Leigo| F[Simplificação + Tradução]
+    E -->|Perfil Jurista| G[Síntese Técnica + Estruturação]
+    
+    subgraph Core AI
+    F & G --> H[Consulta Base Legal (LLM)]
+    H --> I[Validação de Vigência]
+    end
+    
+    I --> J[Geração de Resposta]
+    J --> K[Geração de Cenário Prático/Exemplo]
+    K --> L[Output Final no Chat]
+```
 
 ## Desafios Enfrentados
 Apesar do grande potencial da solução, o projeto precisa lidar com desafios importantes, como:
