@@ -67,10 +67,10 @@ Apesar do grande potencial da solução, o projeto precisa lidar com desafios im
   - Abordagem de IA como ferramenta de apoio, não como agente autônomo de decisão legal, garantindo que a responsabilidade final permaneça com o usuário.
 
 ## Como Buildar
-Para configurar e rodar o projeto localmente, siga os pré-requisitos e os passos de instalação detalhados no arquivo de build. O processo envolve a clonagem do repositório, a instalação das dependências do backend e do frontend, e a inicialização dos dois servidores em terminais separados.
+Para configurar e rodar o projeto localmente, siga os pré-requisitos e os passos de instalação detalhados no arquivo de build na pasta documentação. O processo envolve a clonagem do repositório, a instalação das dependências do backend e do frontend, e a inicialização dos dois servidores em terminais separados.
 
 ## Como Contribuir
-O Fala Direito é um projeto de código aberto e colaborativo. Contribuições serão sempre bem-vindas, seja através de sugestões de melhoria, relato de bugs ou novas funcionalidades. Para mais detalhes, consulte o nosso guia de contribuição ou abra uma issue no repositório.
+O Fala Direito é um projeto de código aberto e colaborativo. Contribuições serão sempre bem-vindas, seja através de sugestões de melhoria, relato de bugs ou novas funcionalidades. Para mais detalhes, consulte o nosso guia de contribuição na pasta documentação ou abra uma issue no repositório.
 
 ## Nosso Time
 **José Leandro** (jlsf): Atua como Gerente de Projeto (GP). Foi responsável pelo desenvolvimento da lógica de negócio, comunicação com banco de dados, integração com o LLM e APIs externas. Também desempenhou o papel de DevOps / SysAdmin, sendo responsável pelo deploy, testes do sistema, configuração de servidores, monitoramento, métricas de desempenho e manutenção da infraestrutura.
