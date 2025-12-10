@@ -127,7 +127,7 @@ export default function PromptPage() {
     } catch (error: unknown) {
       console.error(error);
       if (!message.startsWith("Erro")) {
-        setMessage("Erro ao enviar prompt.");
+        setMessage("Essa não é uma dúvida jurídica.");
       }
     }
     setIsSending(false);
