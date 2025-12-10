@@ -75,7 +75,7 @@ export default function HomePage() {
           
           <h1 className="text-3xl font-extrabold text-black">
             <a href="/" onClick={(e) => { e.preventDefault(); router.push("/"); }}>
-              FalaDireito.ai
+              FalaDireito.ia
             </a>
           </h1>
           
