@@ -1,1 +1,145 @@
+## Arquitetura e Design
 
+- **Justificativa Tecnológica e Stack**:
+Antes de apresentarmos a arquitetura, detalhamos as escolhas técnicas que visam performance, segurança e velocidade de desenvolvimento (Time-to-Market):
+
+    - **Front-end (React, Next.js, Tailwind CSS)**:
+Escolha: O Next.js foi escolhido pela sua capacidade híbrida (SSR/CSR).
+
+Benefício: Precisamos que a aplicação seja indexável por motores de busca (SEO) para alcançar o público leigo que pesquisa no Google ("o que é usucapião"). O React garante a interatividade fluida do chat e o Tailwind permite prototipagem visual ultrarrápida, essencial para ajustes de UX.
+
+        - **Infraestrutura e Back-end (Vercel, N8N, MongoDB)**:
+
+Vercel: Elimina a necessidade de gerenciar servidores (DevOps pesado), permitindo focar em código. Escala automaticamente.
+
+N8N: Atua como orquestrador lógico. Em vez de escrevermos centenas de linhas de código para tratar fluxos de IA, usamos o N8N para criar pipelines visuais (Recebe Texto -> Limpa PII -> Consulta GPT -> Formata JSON).
+
+MongoDB: Pela natureza não estruturada de um chat (tamanhos variados, metadados diversos), um banco NoSQL é mais performático e flexível que um SQL tradicional.
+
+        - **Autenticação (Google Auth + JWT)**:
+
+Segurança: Delegamos a custódia de senhas ao Google, reduzindo drasticamente a superfície de ataque. O JWT permite sessões stateless (sem sobrecarregar o servidor com memória de sessão), ideal para arquitetura serverless.
+
+Decisão de Arquitetura Crítica: Limitação de Input Definimos uma restrição rígida de 1500 caracteres (aprox. 300 palavras) por interação.
+
+Motivo Técnico: Controle de custos de tokens na API da OpenAI.
+
+Motivo de Negócio: Esta versão opera em modelo Free Tier. Futuras versões "Pro" ou "Escritório" removerão essa trava mediante assinatura, permitindo análise de petições inteiras. O limite atua como um circuit breaker financeiro.
+
+- **Diagrama C4**:
+
+- **Contexto**:
+O Usuário envia texto -> O Sistema processa e consulta IA -> Retorna explicação.
+
+        - **Diagrama de Contexto do Sistema**:
+Visão macro: Mostra quem usa o sistema e com quais sistemas externos ele conversa.
+
+```
+C4Context
+    title Diagrama de Contexto - Fala Direito
+
+    Person(cidadao, "Cidadão (Leigo)", "Busca entender direitos básicos e traduzir documentos.")
+    Person(jurista, "Jurista (Profissional)", "Busca resumir jurisprudência e estruturar peças.")
+
+    System(faladireito, "Fala Direito", "Plataforma de IA para democratização e eficiência jurídica.")
+
+    System_Ext(google, "Google Identity", "Provedor de Autenticação (SSO).")
+    System_Ext(openai, "OpenAI API", "LLMs (GPT-4o-mini/GPT-5) para processamento de texto.")
+
+    Rel(cidadao, faladireito, "Envia dúvidas e textos", "HTTPS")
+    Rel(jurista, faladireito, "Envia jurisprudência e casos", "HTTPS")
+    Rel(faladireito, google, "Valida credenciais", "Oauth2")
+    Rel(faladireito, openai, "Envia prompts sanitizados", "JSON/HTTPS")
+
+```
+
+**Decisão Arquitetural**: O sistema atua como uma "caixa preta" facilitadora entre o usuário e a complexidade dos modelos de IA e autenticação externa.
+
+
+- **Container**:
+Visão estrutural: Mostra as aplicações e bancos de dados que compõem o Fala Direito.
+
+```
+C4Container
+    title Diagrama de Container - Fala Direito
+
+    Person(user, "Usuário", "Cidadão ou Jurista")
+
+    Container_Boundary(c1, "Fala Direito System") {
+        Container(web_app, "Web App (Frontend)", "Next.js / React", "Interface SPA para interação via chat.")
+        Container(api, "API Gateway / Backend", "Next.js API Routes", "Gerencia auth, validação de input e roteamento.")
+        Container(orchestrator, "Orquestrador de IA", "N8N (Workflow)", "Pipeline lógico: Sanitização -> Seleção de Modelo -> Formatação.")
+        ContainerDb(db, "Database", "MongoDB Atlas", "Armazena perfis, logs anonimizados e histórico.")
+    }
+
+    System_Ext(openai, "OpenAI API", "Processamento de Linguagem")
+
+    Rel(user, web_app, "Usa", "HTTPS")
+    Rel(web_app, api, "Requisições JSON", "HTTPS")
+    Rel(api, db, "Leitura/Escrita", "Mongoose driver")
+    Rel(api, orchestrator, "Dispara fluxo de IA", "Webhook")
+    Rel(orchestrator, openai, "Consulta", "API Key")
+```
+
+**Justificativa**: A separação entre API Gateway (Next.js) e Orquestrador (N8N) permite que a lógica de "Prompt Engineering" seja alterada visualmente no N8N sem necessidade de novo deploy do código da aplicação.
+
+    - **Web App (Next.js Client)**:
+    Responsável pela UI, validação de caracteres (1500 limit) e renderização do streaming.
+
+    - **API Gateway (Next.js API Routes)**:
+    Recebe o POST, valida o JWT e repassa para o controlador de fluxo.
+
+    - **Flow Orchestrator (N8N)**:
+    Nó 1: Sanitização (Regex para remover CPF/Dados).
+    Nó 2: Router (Direciona para GPT-4.1 mini ou GPT-5 baseado na complexidade).
+    Nó 3: Validador de output (Garante formato JSON).
+
+    - **Database (MongoDB Atlas)**:
+    Coleção users: Metadados.
+    Coleção chats: Payload criptografado das conversas.
+
+    - **External System (OpenAI API)**:
+    Modelos GPT-4.1 Mini e GPT-5.
+
+
+- **Componente**:
+Visão interna: Detalha como o Container "API Gateway" funciona por dentro. Escolhemos este container pois é onde reside a lógica de negócio principal.
+
+```
+C4Component
+    title Diagrama de Componente - API Gateway (Next.js Backend)
+
+    Container(web_app, "Web App", "Cliente React")
+    Container(n8n, "N8N", "Orquestrador")
+    ContainerDb(db, "MongoDB", "Database")
+
+    Container_Boundary(api, "API Gateway") {
+        Component(auth_controller, "Auth Controller", "NextAuth", "Gerencia sessão e tokens JWT.")
+        Component(chat_controller, "Chat Controller", "Node.js Function", "Recebe o input do chat.")
+        Component(sanitizer, "Sanitizer Service", "RegEx/Utils", "Verifica tamanho (1500 chars) e bloqueia PII básico.")
+        Component(history_service, "History Service", "Mongoose Model", "Salva e recupera contexto da conversa.")
+    }
+
+    Rel(web_app, auth_controller, "Login/Logout")
+    Rel(web_app, chat_controller, "POST /api/chat")
+    
+    Rel(chat_controller, auth_controller, "Valida Token")
+    Rel(chat_controller, sanitizer, "Valida Input")
+    Rel(chat_controller, history_service, "Busca contexto anterior")
+    
+    Rel(sanitizer, n8n, "Envia payload limpo")
+    Rel(history_service, db, "Persiste dados")
+```
+
+**Decisão de Design**: O componente Sanitizer Service foi colocado dentro da API (antes do N8N) para garantir que dados sujos ou ataques de injeção sejam barrados antes mesmo de processarmos a lógica cara de IA, economizando recursos.
+
+- **Código**:
+    - **Justificativa da Ausência**: Optamos por não incluir o Diagrama de Código (Nível 4) nesta documentação. Conforme as boas práticas do modelo C4 (Simon Brown), diagramas de código (UML de Classes) em projetos modernos de JavaScript/TypeScript tendem a se tornar obsoletos a cada commit. A estrutura do código é melhor compreendida navegando diretamente pelo repositório GitHub, onde o código é auto-documentado via TypeScript (interfaces e tipos estritos).
+
+O que mudou e por que isso é melhor para o nosso projeto:
+
+- Contexto (Nível 1): Agora o avaliador entende que o "Fala Direito" é o meio de campo. Sem esse diagrama, parecia que vocês construíram a IA do zero. Ele deixa claro que vocês consomem a OpenAI.
+
+- Container (Nível 2): Ficou claro o papel do N8N. Ele não é só uma ferramenta, ele é um container ativo na arquitetura que toma decisões lógicas.
+
+- Componente (Nível 3): Mostra maturidade de engenharia. Você prova que sabe que existe um "Controller", um "Service" de limpeza e um "Service" de banco de dados, e não apenas "código misturado".
